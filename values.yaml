@@ -1,0 +1,52 @@
+replicaCount: 1
+
+api: true
+salt: "secret"
+
+image:
+  repository: mvisonneau/generatedata
+  pullPolicy: IfNotPresent
+  tag: "3.4.1"
+
+ingress:
+  enabled: true
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: example.com
+      paths: 
+        - "/"
+  tls: {}
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # limits:
+  #   cpu: 1
+  #   memory: 256Mi
+  # requests:
+  #   cpu: 10m
+  #   memory: 30Mi
+
+mysql:
+  enabled: true
+  mysqlHost: ""
+  imageTag: "5.7.14"
+  mysqlRootPassword: "secret"
+  mysqlUser: "generatedata"
+  mysqlPassword: "secret"
+  mysqlDatabase: "generatedata"
+  mysqlTablePrefix: "gd_"
+  persistence:
+    enabled: true
+    existingClaim: ""
+    size: 1Gi
+  resources: {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 256Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi

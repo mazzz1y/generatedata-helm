@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "generatedata.fullname" . }}
+data:
+  {{- if .Values.api }}
+  GD_API_ENABLED: {{ "true" | quote }}
+  {{- else }}
+  GD_API_ENABLED: {{ "false" | quote }}
+  {{- end }}
+  GD_DB_HOSTNAME: {{ (include "mysql.host" .) | quote }}
+  GD_DB_NAME: {{ .Values.mysql.mysqlDatabase | quote }}
+  GD_DB_USERNAME: {{ .Values.mysql.mysqlUser | quote }}
+  GD_DB_TABLE_PREFIX: {{ .Values.mysql.mysqlTablePrefix | quote }}
