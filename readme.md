@@ -33,16 +33,37 @@ To uninstall/delete:
 $ helm delete generatedata
 ```
 
-### The following table lists the configurable parameters of the generatedata chart and their default values.
+## Chart Requirements
 
-| Parameter           | Description                                 | Default            |
-|---------------------|---------------------------------------------|--------------------|
-| replicaCount        | Number of replicas                  | 1                          |
-| image.repository    | Image name                          |"mvisonneau/generatedata"   |
-| image.tag           | Image tag                           | "3.4.1"                    |
-| image.pullPolicy    | Image pull policy                   | "IfNotPresent"             |
-| ingress.annotations | Ingress annotations                 | {}                         |
-| ingress.hosts       | Ingress hosts                       | {"example.com"}            |
-| ingress.path        | Ingress path                        | "/"                        |
-| ingress.tls         | Secrets for tls                     | {}                         |
-| resources           | Compute Resources                   | {}                         |
+| Repository | Name | Version |
+|------------|------|---------|
+| @stable | mysql | 0.12.0 |
+
+## Chart Values
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| api | bool | `true` | Enable Generatedata API |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
+| image.repository | string | `"mvisonneau/generatedata"` | Image name |
+| image.tag | string | `"3.4.1"` | Image tag |
+| ingress.annotations | object | `{}` | Ingress annotations |
+| ingress.enabled | bool | `true` | Enable ingress |
+| ingress.hosts[0].host | string | `"example.com"` | Ingress host |
+| ingress.hosts[0].paths[0] | string | `"/"` | Ingress path |
+| ingress.tls | object | `{}` | TLS for ingress |
+| mysql.enabled | bool | `true` | Enable built-in MySQL |
+| mysql.imageTag | string | `"5.7.14"` | MySQL version |
+| mysql.mysqlDatabase | string | `"generatedata"` | Database name |
+| mysql.mysqlHost | string | `""` | Database host |
+| mysql.mysqlPassword | string | `"secret"` | Database password |
+| mysql.mysqlRootPassword | string | `"secret"` | Database root password |
+| mysql.mysqlTablePrefix | string | `"gd_"` | Database table prefix |
+| mysql.mysqlUser | string | `"generatedata"` | Database user |
+| mysql.persistence.enabled | bool | `true` | Enable persistence for database |
+| mysql.persistence.existingClaim | string | `""` | Existing PVC for database |
+| mysql.persistence.size | string | `"1Gi"` | Database disk size |
+| mysql.resources | object | `{}` | Databaser Resources |
+| replicaCount | int | `1` | Number of replicas  |
+| resources | object | `{}` | Compute Resources  |
+| salt | string | `"secret"` | Encryption Salt |

@@ -1,6 +1,7 @@
 replicaCount: 1
 
 api: true
+# Change me
 salt: "secret"
 
 image:
@@ -31,7 +32,9 @@ resources: {}
   #   memory: 30Mi
 
 mysql:
+  # Enable built-in mysql
   enabled: true
+  # Specify if build-in MySQL is disabled if you need to use an external database
   mysqlHost: ""
   imageTag: "5.7.14"
   mysqlRootPassword: "secret"
