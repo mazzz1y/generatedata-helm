@@ -1,5 +1,7 @@
 ## Helm chart for generatedata
 
+*https://github.com/benkeen/generatedata*
+
 ## Prerequisites
 
 - Kubernetes 1.4+
@@ -8,6 +10,8 @@
 ## Installing the Chart
 
 To install the chart:
+
+1) 
 
 ```console
 $ helm dependency update
