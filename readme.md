@@ -11,8 +11,6 @@
 
 To install the chart:
 
-1) 
-
 ```console
 $ helm dependency update
 $ helm install generatedata --wait .
